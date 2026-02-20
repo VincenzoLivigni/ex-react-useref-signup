@@ -1,13 +1,13 @@
-import { useState } from "react"
+import { useRef, useState } from "react"
 
 function App() {
 
-  const [nome, setNome] = useState("")
-  const [cognome, setCognome] = useState("")
+  // const [nome, setNome] = useState("")
+  // const [cognome, setCognome] = useState("")
   const [username, setUsername] = useState("")
   const [password, setPassword] = useState("")
-  const [specializzazione, setSpecializzazione] = useState("")
-  const [esperienza, setEsperienza] = useState("")
+  // const [specializzazione, setSpecializzazione] = useState("")
+  // const [esperienza, setEsperienza] = useState("")
   const [descrizione, setDescrizione] = useState("")
 
   const letters = "abcdefghijklmnopqrstuvwxyz";
@@ -27,25 +27,35 @@ function App() {
   /* validazione descrizione */
   const descrizioneValida = descrizione.trim().length >= 100 && descrizione.trim().length <= 1000
 
+  const nomeRef = useRef()
+  const cognomeRef = useRef()
+  const specializzazioneRef = useRef()
+  const esperienzaRef = useRef()
+
   function handleSubmit(e) {
     e.preventDefault()
 
-    if (nome === "" ||
-      cognome === "" ||
+    const nomeValue = nomeRef.current.value
+    const cognomeValue = cognomeRef.current.value
+    const specializzazioneValue = specializzazioneRef.current.value
+    const esperienzaValue = esperienzaRef.current.value
+
+    if (nomeValue === "" ||
+      cognomeValue === "" ||
       username === "" ||
       password === "" ||
-      specializzazione === "seleziona" ||
-      Number(esperienza) <= 0 ||
+      specializzazioneValue === "seleziona" ||
+      Number(esperienzaValue) <= 0 ||
       descrizione === ""
     ) {
       console.log("Errore nella compilazione del form")
     } else {
-      console.log(`Nome: ${nome}`)
-      console.log(`Cognome: ${cognome}`)
+      console.log(`Nome: ${nomeValue}`)
+      console.log(`Cognome: ${cognomeValue}`)
       console.log(`Username: ${username}`)
       console.log(`Password: ${password}`)
-      console.log(`Specializzazione: ${specializzazione}`)
-      console.log(`Esperienza: ${esperienza}`)
+      console.log(`Specializzazione: ${specializzazioneValue}`)
+      console.log(`Esperienza: ${esperienzaValue}`)
       console.log(`Descrizione: ${descrizione}`)
     }
   }
@@ -64,8 +74,7 @@ function App() {
               <input
                 type="text"
                 placeholder="Inserisci nome"
-                value={nome}
-                onChange={(e) => setNome(e.target.value)}
+                ref={nomeRef}
                 required
               />
             </section>
@@ -76,8 +85,7 @@ function App() {
               <input
                 type="text"
                 placeholder="Inserisci cognome"
-                value={cognome}
-                onChange={(e) => setCognome(e.target.value)}
+                ref={cognomeRef}
                 required
               />
             </section>
@@ -118,8 +126,7 @@ function App() {
             <section>
               <label>Specializzazione</label>
               <select
-                value={specializzazione}
-                onChange={(e) => setSpecializzazione(e.target.value)}>
+                ref={specializzazioneRef}>
 
                 <option value="seleziona">Seleziona</option>
                 <option value="full-stack">Full stack</option>
@@ -134,8 +141,7 @@ function App() {
               <input
                 type="number"
                 placeholder="Inserisci anni di esperienza"
-                value={esperienza}
-                onChange={(e) => setEsperienza(e.target.value)}
+                ref={esperienzaRef}
                 required
               />
             </section>

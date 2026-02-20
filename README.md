@@ -8,7 +8,7 @@ Milestone 1: Creare un Form con Campi Controllati
     ✔️ - Anni di esperienza (input di tipo number)
     ✔️ - Breve descrizione sullo sviluppatore (textarea)
 
-- 2 Aggiungi una validazione al submit, verificando che:
+✅ - 2 Aggiungi una validazione al submit, verificando che:
     ✔️ - Tutti i campi siano compilati
     ✔️ - L'input Anni di esperienza sia un numero positivo
     ✔️ - La Specializzazione sia selezionata
@@ -33,3 +33,18 @@ const symbols = "!@#$%^&*()-_=+[]{}|;:'\\",.<>?/`~";
 
 ✅ - 2 Per ciascuno dei campi validati in tempo reale, mostrare un messaggio di errore (rosso) nel caso non siano validi, oppure 
         un messaggio di conferma (verde) nel caso siano validi.
+
+
+
+
+Milestone 3: Convertire i Campi Non Controllati
+
+Non tutti i campi del form necessitano di essere aggiornati a ogni carattere digitato. Alcuni di essi non influenzano direttamente l’interfaccia mentre l’utente li compila, quindi è possibile gestirli in modo più efficiente.
+
+✅ - 1 Analizza il form: Identifica quali campi devono rimanere controllati e quali invece possono essere non controllati senza 
+        impattare l’esperienza utente.
+
+✅ - 2 Converti i campi non controllati: Usa useRef() per gestirli e recuperare il loro valore solo al momento del submit.
+
+✅ - 3 Assicurati che la validazione continui a funzionare: Anche se un campo non è controllato, deve comunque essere validato 
+        correttamente quando l’utente invia il form.
