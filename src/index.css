@@ -1,0 +1,21 @@
+@import url(bootstrap);
+
+label {
+    font-weight: bold;
+    display: block;
+    margin-bottom: 0.25rem;
+}
+
+section {
+    margin-bottom: 2.5rem;
+}
+
+input,
+select {
+    width: 250px;
+}
+
+textarea {
+    width: 500px;
+    min-height: 100px;
+}
