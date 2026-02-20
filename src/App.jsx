@@ -10,6 +10,23 @@ function App() {
   const [esperienza, setEsperienza] = useState("")
   const [descrizione, setDescrizione] = useState("")
 
+  const letters = "abcdefghijklmnopqrstuvwxyz";
+  const numbers = "0123456789";
+  const symbols = "!@#$%^&*()-_=+[]{}|;:'\\,.<>?/`~";
+
+  /* validazione username */
+  const usernameValido = username.trim().length >= 6 &&
+    [...username.trim()].every((u) => letters.includes(u) || numbers.includes(u))
+
+  /* validazione password */
+  const passwordValida = password.trim().length >= 8 &&
+    [...password.trim()].some(p => letters.includes(p)) &&
+    [...password.trim()].some(p => numbers.includes(p)) &&
+    [...password.trim()].some(p => symbols.includes(p))
+
+  /* validazione descrizione */
+  const descrizioneValida = descrizione.trim().length >= 100 && descrizione.trim().length <= 1000
+
   function handleSubmit(e) {
     e.preventDefault()
 
@@ -65,7 +82,6 @@ function App() {
               />
             </section>
 
-
             {/* username */}
             <section>
               <label>Username</label>
@@ -76,6 +92,10 @@ function App() {
                 onChange={(e) => setUsername(e.target.value)}
                 required
               />
+
+              <p style={{ color: usernameValido ? "green" : "red" }}>
+                {usernameValido ? "username valido" : "Minimo di 6 caratteri, solo lettere e numeri"}
+              </p>
             </section>
 
             {/* password */}
@@ -88,6 +108,10 @@ function App() {
                 onChange={(e) => setPassword(e.target.value)}
                 required
               />
+
+              <p style={{ color: passwordValida ? "green" : "red" }}>
+                {passwordValida ? "Password valida" : "Minimo di 8 caratteri, inserisci almeno 1 lettera, 1 numero e 1 carattere speciale"}
+              </p>
             </section>
 
             {/* specializzazione */}
@@ -125,7 +149,13 @@ function App() {
                 onChange={(e) => setDescrizione(e.target.value)}
                 required
               />
+
+              <p style={{ color: descrizioneValida ? "green" : "red" }}>
+                {descrizioneValida ? "Descrizione valida" : "Min 100 - Max 1000 caratteri"}
+              </p>
             </section>
+
+            <button onClick={handleSubmit}>Invia form</button>
           </form>
         </div>
       </main >
