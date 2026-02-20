@@ -48,3 +48,16 @@ Non tutti i campi del form necessitano di essere aggiornati a ogni carattere dig
 
 ✅ - 3 Assicurati che la validazione continui a funzionare: Anche se un campo non è controllato, deve comunque essere validato 
         correttamente quando l’utente invia il form.
+
+
+    
+Bonus: Migliorare l'Usabilità
+
+Utilizziamo useRef() per migliorare l’esperienza utente, implementando le seguenti funzionalità:
+
+✅ - 1 Focus automatico al primo input (Nome) al mount del componente.
+✅ - 2 Bottone "Reset" in fondo al form per ripristinare tutti i valori:
+    ✔️ - Gli input controllati devono tornare ai valori iniziali.
+    ✔️ - Gli input non controllati devono essere resettati manualmente usando useRef().
+
+✅ - 3 Freccia fissa in basso a destra che, quando cliccata, riporta l'utente all'inizio del form (bisogna usare position: fixed).

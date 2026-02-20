@@ -1,4 +1,4 @@
-import { useRef, useState } from "react"
+import { useRef, useState, useEffect } from "react"
 
 function App() {
 
@@ -59,6 +59,27 @@ function App() {
       console.log(`Descrizione: ${descrizione}`)
     }
   }
+
+  useEffect(() => {
+    nomeRef.current.focus()
+  }, [])
+
+  function handleReset() {
+    nomeRef.current.value = ""
+    cognomeRef.current.value = ""
+    specializzazioneRef.current.value = "seleziona"
+    esperienzaRef.current.value = ""
+
+    setUsername("")
+    setPassword("")
+    setDescrizione("")
+  }
+
+  const formRef = useRef();
+  const scrollOnTop = () => {
+    formRef.current.scrollIntoView({ behavior: "smooth" });
+  }
+
   return (
     <>
       <header>
@@ -67,7 +88,7 @@ function App() {
 
       <main>
         <div className="container mt-5">
-          <form onSubmit={handleSubmit}>
+          <form onSubmit={handleSubmit} ref={formRef} className="mb-5">
             {/* nome */}
             <section>
               <label>Nome</label>
@@ -75,6 +96,7 @@ function App() {
                 type="text"
                 placeholder="Inserisci nome"
                 ref={nomeRef}
+                defaultValue=""
                 required
               />
             </section>
@@ -86,6 +108,7 @@ function App() {
                 type="text"
                 placeholder="Inserisci cognome"
                 ref={cognomeRef}
+                defaultValue=""
                 required
               />
             </section>
@@ -126,7 +149,8 @@ function App() {
             <section>
               <label>Specializzazione</label>
               <select
-                ref={specializzazioneRef}>
+                ref={specializzazioneRef}
+                defaultValue="seleziona">
 
                 <option value="seleziona">Seleziona</option>
                 <option value="full-stack">Full stack</option>
@@ -142,6 +166,7 @@ function App() {
                 type="number"
                 placeholder="Inserisci anni di esperienza"
                 ref={esperienzaRef}
+                defaultValue="1"
                 required
               />
             </section>
@@ -161,8 +186,11 @@ function App() {
               </p>
             </section>
 
-            <button onClick={handleSubmit}>Invia form</button>
+            <button className="me-5" onClick={handleSubmit}>Invia form</button>
+            <button onClick={handleReset}>Reset form</button>
           </form>
+
+          <button className="bottone_personalizzato" onClick={scrollOnTop}>Torna su ⬆️</button>
         </div>
       </main >
     </>
